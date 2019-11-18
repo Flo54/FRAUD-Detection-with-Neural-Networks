@@ -1,2 +1,2 @@
-# Use_case
+.# Use_case
 This is an empty repo

@@ -4,12 +4,19 @@ Moreover, insurance companies have historical knowledge of fraud cases in the pa
 
 # Data Setup
 ## Prerequisites
-Every data base will have different data items which can be used in setting up an ANN. But a field indicating if a historic claim-record has been identified to be fraud is mandatory. This yes/no field is essential for training the ANN and the boolean variable is also the outcome of the model.
+Every data base will have different data items which can be used in setting up an ANN. But a field indicating if a historic claim-record has been identified to be fraud is mandatory. This yes/no field is essential for training the ANN and must be added if not available (which is called "data labelling"). The boolean variable is also the outcome of the model.
 
 # Design of ANN
 TODO
 
-# Outcome
-The quality of Fraud modelling can be determined by looking at certain indicators, like the accuracy rate. Basically, two error types can occur, which are familiar from hypothesis testing:
+# Performance
+The quality of Fraud modelling can be determined by looking at certain indicators which meassure the success rates. Basically, two error types can occur, which are familiar from hypothesis testing:
 - Type 1 Error (false positive): a non-fraud claim is classified as fraud
 - Type 2 Error (false negative): a fraud claim is not classified as fraud
+
+The accuracy rate in fraud detection is the percentage of the true positive in relation to all positive fraud cases (i.e. the sum of true positives and false negative).
+
+# Conclusion
+**Pros:** ANNs are powerful at finding non-linear and very complex relations in large datasets. They accuracy is usually very high.
+
+**Cons:** The interpretability is very limited and decision cannot easily be reasoned out ("black box").

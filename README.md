@@ -1,8 +1,12 @@
 # Introduction
+
+
 For insurance companies it is of financial relevance to detect fraudulent claims as early as possible to be able to react accordingly (e.g. reject the claim). A common approach is often a simple fact check (e.g. if the historic weather data allow a weather-related claim), which is often executed by a claim adjuster. This can also be (partly) automatized by extracting information out of the claim-description document and other available data sources. However, chances are high that an automatized stand-alone fact check identifies a very limited number of potential fraud-cases.
 Moreover, insurance companies have historical knowledge of fraud cases in the past and it makes sense to use this common memory. This Use Case describes how data science techniques can be used to archive a better detection rate based on historic data. The idea is to train an artificial neural network (ANN) on the company's past data and use it after the learning process to identify new potential fraud cases.
 
 # Data Setup
+
+
 ## Prerequisites
 Every data base will have different data items which can be used in setting up an ANN. But a field indicating if a historic claim-record has been identified to be fraud is mandatory. This yes/no field is essential for training the ANN and must be added if not available (which is called "data labelling"). The boolean variable is also the outcome of the model.
 
@@ -17,6 +21,33 @@ The answer to the second question will be discussed in the next section. As for 
 As for our use-case, it might be beneficial to first look at the *basic setup*. Once we finished training our neural network on the previously-extracted historical claim data, the goal is to apply the model every time a new claim is planted. In this case all the explanatory variables are available and we can obtain a prediction if the corresponding claim is fraudulent by applying the data to our trained model: 
 
 ![](/ANN_images/Motivation_Setup.png)
+
+Through the model we will either receive a binary prediction variable with the value 1 indicating the the claim is a fraud or - what might be ever better - a fraud probability. One might prefer the use of probabilities, since this allows to actually detect how sure the model is in it's prediction to be a fraud case. 
+
+# Metrics for Imbalanced Data
+As mentioned before, for the case of a imbalanced data set the use of performance indicators has to be adapted accordingly. Let's now assume that a trained statistical model <img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;a^L" title="\large a^L" /> leads for the claim case <img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;x_i" title="\large x_i" /> to a prediction in (0,1), e.g. gives a fraud probability,
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;a^L(x_i)&space;\in&space;(0,1)." title="\large a^L(x_i) \in (0,1)" />
+</p>
+
+A binary classification is then typically obtained by using a *threshold* <img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;t_{hres}" title="\large t_{hres}" /> in the following form, 
+
+<p align="center">
+<img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;y&space;=&space;\left\{&space;\begin{array}{ll}&space;0,&space;&&space;a^L(x_i)&space;\,\leq&space;\,t_{hres}\\&space;1,&space;&&space;a^L(x_i)&space;\,\,\,&space;\textgreater&space;\,\,&space;t_{hres}&space;\end{array}&space;\right.&space;\label{2_1}" title="\large y = \left\{ \begin{array}{ll} 0, & a^L(x_i) \,\leq \,t_{hres}\\ 1, & a^L(x_i) \,\,\, \textgreater \,\, t_{hres} \end{array} \right. \label{2_1}" />
+ </p>
+
+e.g. if the probability exceeds the threshold, the claim is classified as a fraud, otherwise as non-fraud. This method allows to get *binary predicitons* from continuous values like scores or probabilities. For this binary values then the common **confusion matrix** can be visualized: 
+
+
+<p align="center">
+  <img height=350 width=400  src="/ANN_images/Confusion_Matrix.png">
+</p>
+
+Basically, the two error types that can occur, are placed in the off-diagonal of the confusion matrix. These errors are familiar from hypothesis testing:
+- **FP**...Type 1 Error (false positive): a non-fraud claim is classified as fraud
+- **FN**...Type 2 Error (false negative): a fraud claim is not classified as fraud
+
 
 
 

@@ -6,6 +6,20 @@ Moreover, insurance companies have historical knowledge of fraud cases in the pa
 ## Prerequisites
 Every data base will have different data items which can be used in setting up an ANN. But a field indicating if a historic claim-record has been identified to be fraud is mandatory. This yes/no field is essential for training the ANN and must be added if not available (which is called "data labelling"). The boolean variable is also the outcome of the model.
 
+## Setup of Use-Case
+In our case we will demonstrate the theoretical concepts by applying it for a concrete use case from UNIQA. The underlying data is based on casco-car insurance claims over a observation period of 3 1/2 years. After gathering the corresponding data, we ended up with about 60 explanatory variables and north of 300.000 claims. 
+The sheer size of the data might excite the reader at first glance because it's a well known fact thatespecially neural networks gain huge performance boosts when applying bigger datasets (**Big Data**), but really all we care about is the distribution of the variable of intereset - in our case a binary indicator for fraud. We observed a event rate of about 0.44%, so not even every 200th claim case was detected as a fraudulent one. Thus, the distribution of our target variable is heavily skewed towards the majority class and our underlying data falls under the category of an **imbalanced data set**. This fact has to be considered twice when training a statistical model: 
+ 1. What algorithm should we choose for our model? Is the model able to handle imbalanced data? Should we apply some changes to the algorithm? Per default, most algorithms intend to maximize the overall accucary/error and don't focus on the minority class.
+ 2. How to assess the model performance since the target class is skewed? Should other performance indicators than the traditional ones should be considered? 
+ 
+The answer to the second question will be discussed in the next section. As for the first question, we will come back to that point when we talk about our model structure.
+
+As for our use-case, it might be beneficial to first look at the *basic setup*. Once we finished training our neural network on the previously-extracted historical claim data, the goal is to apply the model every time a new claim is planted. In this case all the explanatory variables are available and we can obtain a prediction if the corresponding claim is fraudulent by applying the data to our trained model: 
+
+![](k-means_files/figure-html/plot-colored-1.png)
+
+
+
 # Design of ANN
 TODO
 

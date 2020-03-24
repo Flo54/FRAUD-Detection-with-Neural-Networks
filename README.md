@@ -16,7 +16,7 @@ The answer to the second question will be discussed in the next section. As for 
 
 As for our use-case, it might be beneficial to first look at the *basic setup*. Once we finished training our neural network on the previously-extracted historical claim data, the goal is to apply the model every time a new claim is planted. In this case all the explanatory variables are available and we can obtain a prediction if the corresponding claim is fraudulent by applying the data to our trained model: 
 
-![](/ANN_images/Motivation_Setup.png | height= 50)
+![](/ANN_images/Motivation_Setup.png)
 
 
 

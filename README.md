@@ -30,9 +30,8 @@ Given a set of *n* observations (**x**<sub>1</sub>, **x**<sub>2</sub>, ...,�
 # Metrics for Imbalanced Data
 As mentioned before, for the case of a imbalanced data set the use of performance indicators has to be adapted accordingly. Let's now assume that a trained statistical model *a<sup>L</sup>* leads for the claim case *x<sub>i</sub>* to a prediction in (0,1), e.g. gives a fraud probability, 
 
-<p align="center">
-  *a<sup>L</sup>(x<sub>i</sub>) ∈ (0,1)*
-</p>
+                                                 *a<sup>L</sup>(x<sub>i</sub>) ∈ (0,1)*
+
 
 
 A binary classification is then typically obtained by using a *threshold* <img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;t_{hres}" title="\large t_{hres}" /> in the following form, 

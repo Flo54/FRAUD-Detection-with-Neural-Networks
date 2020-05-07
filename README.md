@@ -30,7 +30,7 @@ Given a set of *n* observations (**x**<sub>1</sub>, **x**<sub>2</sub>, ...,�
 # Metrics for Imbalanced Data
 As mentioned before, for the case of a imbalanced data set the use of performance indicators has to be adapted accordingly. Let's now assume that a trained statistical model *a<sup>L</sup>* leads for the claim case *x<sub>i</sub>* to a prediction in (0,1), e.g. gives a fraud probability, 
 
-                                                 *a<sup>L</sup>(x<sub>i</sub>) ∈ (0,1)*
+*a<sup>L</sup>(x<sub>i</sub>) ∈ (0,1)*
 
 
 

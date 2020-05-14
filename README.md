@@ -39,7 +39,7 @@ A binary classification is then typically obtained by using a *threshold* *t<sub
 
 <p align="center">
 
-<img width="330" height="115"  src="/ANN_images/Equations/ypred.png">
+<img width="370" height="115"  src="/ANN_images/Equations/ypred.png">
 </p>
 
 If the probability exceeds the threshold, the claim is classified as a fraud, otherwise as non-fraud. This method allows to get *binary predictions* from continuous values like scores or probabilities. For these binary values the common **confusion matrix** can be visualized [2]:
@@ -146,7 +146,7 @@ The activation is calculated by applying some sort of activation function *f(.)*
 
 ### Possible Activation Functions
 
-As for the activation function f, there are different options to choose and whose performance heavily depends on the field of application. The most common three choices are: 
+As for the activation function *f(.)*, there are different options to choose and whose performance heavily depends on the field of application. The most common three choices are: 
 
 #### 1) Sigmoid function
 The sigmoid function is also known as logistic function and maps the weighted inputs from the real axis onto the interval (0,1): 
@@ -193,7 +193,7 @@ A common choice especially for problems regarding image recognition, are the so 
 ### Possible Cost Functions
 One essential part of building statistical models is the ability to quantify the performance of the model based on the data, typically the training data. In our use-case setting we are dealing with the task of **supervised learning**, this means we can directly compare the variable of interest with the outcome of the model. Let’s assume our training set consists of n claim cases: 
 
-*X = (x<sub>1.</sub><sup>T</sup>, x<sub>2.</sub><sup>T</sup>, ..., x<sub>n.</sub><sup>T</sup>) ∈ ℝ<sup>n x m*
+*X = (x<sub>1.</sub><sup>T</sup>, x<sub>2.</sub><sup>T</sup>, ..., x<sub>n.</sub><sup>T</sup>)<sup>T</sup> ∈ ℝ<sup>n x m*
  
  with *x<sub>i.</sub><sup>T</sup> ∈ ℝ<sup>1 x m* denoting the i-th observation as a row.
 
@@ -222,7 +222,7 @@ Hence, the discrepancy between a and y is big, therefore *C<sub>MSE</sub> ≈ 0.
  </p>
 Rapid improvements in terms of costs are gained within the first few epochs, so the model seems to be recognizing early on in which direction the parameters w and b should be adapted. 
 
-Now, consider the case of initializing the parameters with *w = b = 2*. Here the output is with *a = σ(4) ≈ 0.98* even further away from the desired value $y = 0$ and the error with *C<sub>MSE</sub> ≈ 0.96* even bigger than before. When visualizing the learning progress, a so-called **learning slowdown** has occurred: 
+Now, consider the case of initializing the parameters with *w = b = 2*. Here the output is with *a = σ(4) ≈ 0.98* even further away from the desired value *y = 0* and the error with *C<sub>MSE</sub> ≈ 0.96* even bigger than before. When visualizing the learning progress, a so-called **learning slowdown** has occurred: 
 <p align="center">
 <img  width="340" height="310" src="/ANN_images/MSE_ex2.png">
  </p>
@@ -260,7 +260,7 @@ indicates, the parameter updates can be much bigger for weighted inputs around z
 
 This is one of the main drawbacks when using the MSE-cost function and in general it would be better to decide for an alternative option, such as the **cross-entropy cost function**. This cost function is based on the concept of the Kullback-Leibler divergence to compare two probability distributions – for more details see [6]. 
 
-For a single output neuron with *a<sup>i</sup> = a<sup>L</sup>(x<sub>i.</sub><sup>T</sup>)* and *y<sup>i</sup> = y(x<sub>i.</sub><sup>T</sup>)* the cross-entropy with is defined as:
+For a single output neuron with *a<sup>i</sup> = a<sup>L</sup>(x<sub>i.</sub><sup>T</sup>)* and *y<sup>i</sup> = y(x<sub>i.</sub><sup>T</sup>)* the cross-entropy is defined as:
 
 <p align="center">
 <img width="550" height="90"  src="/ANN_images/Equations/CE.png">
@@ -271,7 +271,7 @@ Performing the calculations just like before, following partial derivatives are 
 <img width="200" height="120"  src="/ANN_images/Equations/CE_wDerivative1n.png">
 </p>
 
-This is great news: now the rate of weight changes depends actually on the **error s(z) – y**. This means the bigger the error is, the bigger the updates get! 
+This is great news: now the rate of weight changes depends actually on the **error σ(z) – y**. This means the bigger the error is, the bigger the updates get! 
 
 Visualizing the training history with the cross-entropy cost function leads to:
 <p align="center">
@@ -305,7 +305,7 @@ Without going into any details: the backpropagation algorithm gives us the follo
 When using the sigmoid activation-function, the activation is non-negative, *a<sub>i</sub> = σ(z<sub>i</sub>) ≥ 0*, which implies that the sign of the gradient *dC/dw<sub>i</sub>* solely depends on *sgn(dC/dz<sup>^</sup>)* and is equal for *i = 1,2* and *3*. As a consequence, all three weight updates are either bigger or less than 0 and it’s impossible for one of these parameters to increase while a different one decreases. This however is clearly not the behavior we expect our model to possess since this could lead to a systematic bias along the weight updates. 
 
 Even if it’s probably not necessary, we would at least want our model to have the ability to change a specific weight independently of another weight. 
-Here, the hyperbolic tangent has clear advantages over the sigmoid function: Since the hyperbolic tangent is an odd function, *tanh(-z) = -tanh(z)*, and *a<sub>i</sub>* can be either negative or positive, we can expect the positive and negative activations to balance each other out and avoid any bias for the weight updates. Thus, usually the tanh(.) is a better option to choose as activation function than the sigmoid.
+Here, the hyperbolic tangent has clear advantages over the sigmoid function: Since the hyperbolic tangent is an odd function, *tanh(-z) = -tanh(z)*, and *a<sub>i</sub>* can be either negative or positive, we can expect the positive and negative activations to balance each other out and avoid any bias for the weight updates. Thus, usually the *tanh(.)* is a better option to choose as activation function than the sigmoid.
 
 A similar argument could be made for a neural network where we are interested in the weight updates from the input to first hidden layer: 
 <p align="center">
@@ -362,7 +362,7 @@ Hence, we make use of a so-called **validation** or **development set**. Therefo
 -	test set: fourth part 
 
 <p align="center">
-<img  width="560" height="190" src="/ANN_images/holdout.png">
+<img  width="500" height="170" src="/ANN_images/holdout.png">
 </p>
 
 To ensure no systematic bias is present, it is recommended to shuffle the observations randomly before splitting them into the disjunct parts. 
@@ -432,7 +432,7 @@ The concept of tuning the hyperparameters is by far the most important aspect of
 -	https://towardsdatascience.com/hyperparameters-optimization-526348bb8e2d
 -	https://towardsdatascience.com/simple-guide-to-hyperparameter-tuning-in-neural-networks-3fe03dad8594
 
-But even with the optimizing of the hyperparameters, the results still could heavily depend on how we chose to split our data in the first place. A more robust method is to use **k-fold Cross-Validation** [11], in our case with k=4. With this method the model is not trained only once with a single training, validation and test set, but three additional times with different splits corresponding to different data sets: 
+But even with the optimizing of the hyperparameters, the results still could heavily depend on how we chose to split our data in the first place. A more robust method is to use **k-fold Cross-Validation** [11], in our case with *k = 4*. With this method the model is not trained only once with a single training, validation and test set, but three additional times with different splits corresponding to different data sets: 
 
 <p align="center">
 <img  width="650" height="220" src="/ANN_images/4foldCV.PNG">

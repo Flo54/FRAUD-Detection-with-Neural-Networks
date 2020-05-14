@@ -286,3 +286,27 @@ with the values of the initial cost-function being *1.72* for (1) and *4* for (2
 </p>
 
 This is how we would expect a cost function to behave. 
+
+### Selection of Hyperparameters
+
+#### Cost Function
+As explained in previous chapter the learning potential is much higher for the cross-entropy cost function and therefore this cost function was selected. In our use-case of fraud detection the utilization of the cross-entropy CF led to major improvements compared to the MSE-based metric
+
+#### Activation Function
+Suppose the following neural network,
+<p align="center">
+<img  width="550" height="220" src="/ANN_images/Update_Motivation.png">
+ </p>
+ 
+and we are only interested in the connection between the activations *a<sub>1</sub>*, *a<sub>2</sub>* and *a<sub>3</sub>* to the weighted input *z<sup>^</sup>* in the next layer. 
+Without going into any details: the backpropagation algorithm gives us the following relation for the gradient of the cost function with respect to a specific weight for *i = 1,2,3*:
+<p align="center">
+<img width="130" height="60"  src="/ANN_images/Equations/Update_Formula.png">
+</p>
+
+When using the sigmoid activation-function, the activation is non-negative, *a<sub>i</sub> = σ(z<sub>i</sub>) ≥ 0*, which implies that the sign of the gradient *dC/dw<sub>i</sub>* solely depends on *sgn(dC/dz<sup>^</sup>)* and is equal for *i = 1,2* and *3*. As a consequence, all three weight updates are either bigger or less than 0 and it’s impossible for one of these parameters to increase while a different one decreases. This however is clearly not the behavior we expect our model to possess since this could lead to a systematic bias along the weight updates. 
+
+Even if it’s probably not necessary, we would at least want our model to have the ability to change a specific weight independently of another weight. 
+Here, the hyperbolic tangent has clear advantages over the sigmoid function: Since the hyperbolic tangent is an odd function, *tanh(-z) = -tanh(z)*, and *a<sub>i</sub>* can be either negative or positive, we can expect the positive and negative activations to balance each other out and avoid any bias for the weight updates. Thus, usually the tanh(.) is a better option to choose as activation function than the sigmoid.
+
+

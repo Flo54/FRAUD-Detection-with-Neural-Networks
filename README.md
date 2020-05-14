@@ -41,34 +41,25 @@ A binary classification is then typically obtained by using a *threshold* *t<sub
 
 <p align="center">
 
-<img   src="/ANN_images/Equations/Motivation_Setup.png">
+<img width="330" height="115"  src="/ANN_images/Equations/ypred.png">
 </p>
 
 If the probability exceeds the threshold, the claim is classified as a fraud, otherwise as non-fraud. This method allows to get *binary predictions* from continuous values like scores or probabilities. For these binary values the common **confusion matrix** can be visualized [2]:
 
 
 <p align="center">
-  <img   src="/ANN_images/Confusion_Matrix.png">
+  <img width="370" height="330"  src="/ANN_images/Confusion_Matrix.png">
 </p>
 
 Basically, the two error types that can occur are placed in the off-diagonal of the confusion matrix. These errors are familiar from hypothesis testing:
 - **FP**...type 1 error (false positive): a non-fraud claim is classified as fraud
 - **FN**...type 2 error (false negative): a fraud claim is not classified as fraud
 
+Note: from here on, we will denote the **minority class** (class of interest – in our case the fraud claims) with **1** and the majority class with 0. 
 
+Traditionally, the **accuracy**-metric is used for measuring the performance of a model. That is, divide all correctly classified observations by the total number. In terms of elements of the confusion matrix, this corresponds to:
 
+<p align="center">
 
-# Design of ANN
-TODO
-
-# Performance
-The quality of Fraud modelling can be determined by looking at certain indicators which meassure the success rates. Basically, two error types can occur, which are familiar from hypothesis testing:
-- Type 1 Error (false positive): a non-fraud claim is classified as fraud
-- Type 2 Error (false negative): a fraud claim is not classified as fraud
-
-The accuracy rate in fraud detection is the percentage of the true positive in relation to all positive fraud cases (i.e. the sum of true positives and false negative).
-
-# Conclusion
-**Pros:** ANNs are powerful at finding non-linear and very complex relations in large datasets. They accuracy is usually very high.
-
-**Cons:** The interpretability is very limited and decision cannot easily be reasoned out ("black box").
+<img width="290" height="60"  src="/ANN_images/Equations/acc.png">
+</p>

@@ -29,30 +29,31 @@ It might be beneficial to first look at the basic setup for our use-case. Once w
  <img   src="/ANN_images/Motivation_Setup.png">
 </p>
 
-Through the model we will either receive a binary prediction variable with the value 1 indicating the the claim is a fraud or - what might be ever better - a fraud probability. One might prefer the use of probabilities, since this allows to actually detect how sure the model is in it's prediction to be a fraud case. 
+Through the model we will either receive a binary prediction variable with the value 1 indicating that the claim is a fraud or - which might be ever better - a **fraud probability**. The display of probabilities gives an impression of how accurate the model think it is in its prediction of a fraud case. 
 
 Given a set of *n* observations (**x**<sub>1</sub>, **x**<sub>2</sub>, ..., **x**<sub>*n*</sub>) with **x**<sub>*i*</sub> ∈ ℝ<sup>*k*</sup>, the *k*-means algorithm partitions the *n* observations into *k* ≤ *n* sets *C* = {*C*<sub>1</sub>, *C*<sub>2</sub>, ..., *C*<sub>*k*</sub>} such that
 
 # Metrics for Imbalanced Data
-As mentioned before, for the case of a imbalanced data set the use of performance indicators has to be adapted accordingly. Let's now assume that a trained statistical model *a<sup>L</sup>* leads for the claim case *x<sub>i</sub>* to a prediction in (0,1), e.g. gives a fraud probability, *a<sup>L</sup>(x<sub>i</sub>) ∈ (0,1)*
+As mentioned before for the case of an imbalanced data set, the use of performance indicators has to be adapted accordingly. Let's now assume that a trained statistical model  *a<sup>L</sup>* leads for the claim case *x<sub>i</sub>* to a prediction in (0,1), e.g. gives a fraud probability, *a<sup>L</sup>(x<sub>i</sub>) ∈ (0,1)*.
 
 
-A binary classification is then typically obtained by using a *threshold* <img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;t_{hres}" title="\large t_{hres}" /> in the following form, 
-
-<p align="center">
-<img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\large&space;y&space;=&space;\left\{&space;\begin{array}{ll}&space;0,&space;&&space;a^L(x_i)&space;\,\leq&space;\,t_{hres}\\&space;1,&space;&&space;a^L(x_i)&space;\,\,\,&space;\textgreater&space;\,\,&space;t_{hres}&space;\end{array}&space;\right.&space;\label{2_1}" title="\large y = \left\{ \begin{array}{ll} 0, & a^L(x_i) \,\leq \,t_{hres}\\ 1, & a^L(x_i) \,\,\, \textgreater \,\, t_{hres} \end{array} \right. \label{2_1}" />
- </p>
-
-e.g. if the probability exceeds the threshold, the claim is classified as a fraud, otherwise as non-fraud. This method allows to get *binary predicitons* from continuous values like scores or probabilities. For this binary values then the common **confusion matrix** can be visualized: 
-
+A binary classification is then typically obtained by using a *threshold* *t<sub>hres</sub>* in the following manner: 
 
 <p align="center">
-  <img height=350 width=400  src="/ANN_images/Confusion_Matrix.png">
+
+<img   src="/ANN_images/Equations/Motivation_Setup.png">
 </p>
 
-Basically, the two error types that can occur, are placed in the off-diagonal of the confusion matrix. These errors are familiar from hypothesis testing:
-- **FP**...Type 1 Error (false positive): a non-fraud claim is classified as fraud
-- **FN**...Type 2 Error (false negative): a fraud claim is not classified as fraud
+If the probability exceeds the threshold, the claim is classified as a fraud, otherwise as non-fraud. This method allows to get *binary predictions* from continuous values like scores or probabilities. For these binary values the common **confusion matrix** can be visualized [2]:
+
+
+<p align="center">
+  <img   src="/ANN_images/Confusion_Matrix.png">
+</p>
+
+Basically, the two error types that can occur are placed in the off-diagonal of the confusion matrix. These errors are familiar from hypothesis testing:
+- **FP**...type 1 error (false positive): a non-fraud claim is classified as fraud
+- **FN**...type 2 error (false negative): a fraud claim is not classified as fraud
 
 
 
